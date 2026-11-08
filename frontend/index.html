@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEAR Auction · testnet</title>
+  </head>
+  <body>
+    <!--
+      Static page skeleton. src/main.ts fills in every element that has an id.
+      Sections: header → deployment check → auction state → wallet → actions → activity log.
+    -->
+    <header class="header">
+      <div>
+        <h1>NEAR Auction</h1>
+        <p class="muted">
+          Contract <a id="contract-link" target="_blank" rel="noreferrer"></a>
+        </p>
+      </div>
+      <span class="badge">testnet</span>
+    </header>
+
+    <main>
+      <!-- 1. Is the contract deployed and initialized on testnet? -->
+      <section class="card">
+        <h2>Deployment check</h2>
+        <ol id="deploy-steps" class="steps"></ol>
+        <p id="deploy-message" class="muted"></p>
+        <button id="recheck" class="secondary" type="button">Check again</button>
+      </section>
+
+      <!-- 2. Live auction state read through view methods (no wallet needed). -->
+      <section id="auction" class="card" hidden>
+        <h2>Auction</h2>
+        <dl class="grid">
+          <dt>Status</dt>
+          <dd id="status"></dd>
+          <dt>Highest bid</dt>
+          <dd id="highest-bid"></dd>
+          <dt>Highest bidder</dt>
+          <dd id="highest-bidder"></dd>
+          <dt>Auctioneer</dt>
+          <dd id="auctioneer"></dd>
+          <dt>Ends</dt>
+          <dd><span id="end-time"></span> <span id="countdown" class="muted"></span></dd>
+        </dl>
+      </section>
+
+      <!-- 3. Wallet connection + 4. Change methods (bid / claim). -->
+      <section id="actions" class="card" hidden>
+        <h2>Participate</h2>
+        <div class="row">
+          <p id="account" class="muted">Not connected</p>
+          <button id="wallet-button" type="button">Connect wallet</button>
+        </div>
+
+        <form id="bid-form" class="row">
+          <label for="bid-amount" class="sr-only">Bid amount in NEAR</label>
+          <input
+            id="bid-amount"
+            type="text"
+            inputmode="decimal"
+            placeholder="Amount in NEAR"
+            autocomplete="off"
+            required
+          />
+          <button id="bid-button" type="submit">Place bid</button>
+        </form>
+        <p id="bid-hint" class="muted small"></p>
+
+        <div class="row">
+          <p class="muted small">
+            After the auction ends, anyone can send the winning bid to the auctioneer.
+          </p>
+          <button id="claim-button" class="secondary" type="button">Claim</button>
+        </div>
+      </section>
+
+      <!-- 5. Results of the user's transactions. -->
+      <section class="card">
+        <h2>Activity</h2>
+        <ul id="log" class="log"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

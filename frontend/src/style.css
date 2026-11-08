@@ -1,0 +1,199 @@
+/* Minimal styling: system font, light/dark aware, single column of cards. */
+:root {
+  color-scheme: light dark;
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --fg: #111418;
+  --muted: #5d6673;
+  --border: #e2e5ea;
+  --accent: #00a37a;
+  --error: #d6334a;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1013;
+    --card: #171a1f;
+    --fg: #eef0f3;
+    --muted: #9aa3ae;
+    --border: #2a2f37;
+  }
+}
+
+body {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+a {
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header p {
+  margin: 4px 0 0;
+}
+
+.badge {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.85rem;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.row p {
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 16px;
+  margin: 0;
+}
+
+.grid dt {
+  color: var(--muted);
+}
+
+.grid dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+input {
+  flex: 1;
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Deployment checklist: ✓ passed, ✗ failed, • not checked yet. */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+}
+
+.steps li::before {
+  display: inline-block;
+  width: 1.4em;
+  font-weight: 700;
+}
+
+.steps li.ok::before {
+  content: "✓";
+  color: var(--accent);
+}
+
+.steps li.fail::before {
+  content: "✗";
+  color: var(--error);
+}
+
+.steps li.pending {
+  color: var(--muted);
+}
+
+.steps li.pending::before {
+  content: "•";
+}
+
+.log {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.log li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.log li.error {
+  color: var(--error);
+}
+
+.log li.success {
+  color: var(--accent);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
